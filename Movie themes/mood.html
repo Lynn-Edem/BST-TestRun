@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream X</title>
+    <link rel="stylesheet" href="mood.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Stream X</div>
+        <p class="profile-pic" title="Profile"> <span class="emoji">👤</span></p>
+    </header>
+
+<div class="layout">
+    <div class="app">
+      <div id="toggleBtn" class="toggle-btn">☰</div>
+         <aside id="sidebar" class="sidebar">
+           <ul class="menu">
+            <li class="active">
+              <a class="icon-btn" href="../Home/existinguser.html">🏠</a>
+              <span>Home</span>
+            </li>
+
+            <li>
+              <i class="icon-btn">🔍</i>
+              <span>Search</span>
+            </li>
+
+            <li>
+              <i class="icon-btn">📚</i>
+              <span>Library</span>
+            </li>
+
+            <li>
+              <i class="icon-btn">⚙️</i>
+              <span>Settings</span>
+            </li>
+            </ul>
+         </aside>
+    </div>
+
+  <main>
+    <section class="hero" aria-label="Featured Movie">
+        <div class="hero-left">
+            <div class="main-header">
+        <h1>MoodBoard</h1>
+        <div class="mood-chips" id="moodChips">
+          <div class="chip" data-mood="Happy">Happy</div>
+          <div class="chip" data-mood="Sad">Sad</div>
+          <div class="chip" data-mood="Angry">Angry</div>
+          <div class="chip" data-mood="Curious">Curious</div>
+          <div class="chip" data-mood="Sexy">Sexy</div>
+        </div>
+      </div>
+      
+        <h2 id="featuredTitle" class="title">Blade Runner 2049</h2>
+        <div class="meta">2026 · Movie · 18+</div>
+        <div style="font-weight:700;color:var(--accent);margin:8px 0">Corp-Melodrama</div>
+        <p class="desc">K, an officer with the Los Angeles Police Department, unearths a secret that could create chaos. He goes 
+            <span class="more-text" style="display: none;">on a quest to find Rick Deckard, a former blade runner who has been missing for over three decades..</span>  <span class="highlight" id="moreBtn"><strong>More...</strong></span></p>
+
+        <div class="watch-row">
+          <button class="btn" id="watchBtn">Watch Now</button>
+          <button class="play-btn" id="playBtn" aria-label="Play trailer">▶</button>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+          <img src="https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg" alt="movie poster">
+    </div>
+
+    </section>
+
+    <h3 class="section-title" id="basedOnTitle">Based on Your Mood "Happy" </h3>
+
+    <section class="grid" id="posterGrid" aria-label="Suggested posters">
+    </section>
+     </main>
+ </div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<footer>
+<div class="footer-logo">STREAM X </div>
+
+<div class="social-icons">
+<i class="fab fa-facebook"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-youtube"></i>
+</div>
+
+<div class="footer-bottom">
+<div>Contact us · Terms and Privacy Notice · Help</div>
+<div>©️ 2025 Stream X — All Rights Reserved</div>
+</div>
+</footer>
+
+
+<!-- Modal for playing trailer -->
+<div id="modal" role="dialog" aria-modal="true" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:20px">
+  <div style="background:#000;border-radius:10px;max-width:900px;width:100%;height:60vh;display:flex;flex-direction:column;overflow:hidden">
+    <div style="padding:10px;display:flex;justify-content:flex-end">
+      <button id="closeModal" style="background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer">✕</button>
+    </div>
+    <div style="flex:1;display:grid;place-items:center;color:#fff">
+      <div style="width:90%;height:90%;background:#111;display:grid;place-items:center;border-radius:6px">Trailer (placeholder)</div>
+    </div>
+  </div>
+</div>
+<script src="mood.js"></script>
+
+
+</body>
+</html>

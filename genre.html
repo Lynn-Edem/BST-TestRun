@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Platform Specific Platform</title>
+    <link rel="stylesheet" href="genre.css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="heading">Stream X</h1>
+    </div>
+
+    <h3 id="paragraph">Choose at least 5 five of your favorite genres</h3>
+
+    <div id="section">
+      <div>
+        <button class="boxes" id="card1">Action</button>
+      </div>
+      <div>
+        <button class="boxes" id="card2">Horror</button>
+      </div>
+      <div>
+        <button class="boxes" id="card3">Sci-fi</button>
+      </div>
+      <div>
+        <button class="boxes" id="card4">Romance</button>
+      </div>
+      <div>
+        <button class="boxes" id="card5">Animation</button>
+      </div>
+      <div>
+        <button class="boxes" id="card6">Kids</button>
+      </div>
+      <div>
+        <button class="boxes" id="card7">Fantasy</button>
+      </div>
+      <div>
+        <button class="boxes" id="card8">Musicals</button>
+      </div>
+      <div>
+        <button class="boxes" id="card9">Crime</button>
+      </div>
+      <div>
+        <button class="boxes" id="card10">Thriller</button>
+      </div>
+      <div>
+        <button class="boxes" id="card11">Documentaries</button>
+      </div>
+      <div>
+        <button class="boxes" id="card12">Reality Tv</button>
+      </div>
+
+      <div><button class="btn-cta">Next</button></div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll(".boxes");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("glow");
+        });
+      });
+    </script>
+  </body>
+</html>

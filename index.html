@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stream X — Figma-style Landing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg-1:#030000;
+--bg-2:#000000;
+--neon:#8E5EFF;
+--neon-strong:#C49BFF;
+--muted:#a9a7b1;
+--card:#14121a;
+--card-w:180px;
+--card-gap:16px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+color:#ffffff;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+overflow-x:hidden;
+padding-bottom:60px;
+}
+
+header{
+    height: 60px;
+    display:flex;
+    align-items:center;
+    background: #050208;
+    margin: 0;
+    padding:0 12px;
+    padding-right: 40px;
+    position: sticky;
+    top:0;
+    z-index: 99999;
+    justify-content:space-between}
+
+.logo{
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--neon);
+    letter-spacing:0.5px;
+    align-self:flex-start;
+    margin-left:6px}
+
+
+.hero {
+max-width:1180px;
+height: 600px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin:32px auto 8px;
+padding:56px 28px;
+border-radius:14px;
+text-align:center;
+background: linear-gradient(180deg, rgba(10,9,16,0.6), rgba(6,5,10,0.32));
+border:1px solid rgba(142,94,255,0.06);
+box-shadow: 0 20px 80px rgba(2,2,6,0.6);
+position:relative;
+overflow:hidden;
+object-fit: contain;
+background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(StreamXBG.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background: radial-gradient(800px 220px at 50% 8%, rgba(142,94,255,0.04), transparent 80%);
+}
+
+.hero .title{
+font-size:56px;
+font-weight:900;
+line-height:1.02;
+margin-bottom:12px;
+letter-spacing:-1px;
+animation:neon 3s ease-in-out infinite;
+text-shadow: 0 10px 40px rgba(142,94,255,0.12);
+}
+@keyframes neon {
+0% { text-shadow: 0 8px 30px rgba(142,94,255,0.08); transform:translateY(0); }
+50%{ text-shadow: 0 24px 90px rgba(142,94,255,0.2); transform:translateY(-6px); }
+100%{ text-shadow: 0 8px 30px rgba(142,94,255,0.08); transform:translateY(0); }
+}
+
+.hero .subtitle{ color:var(--muted); font-size:16px; margin-bottom:10px; font-weight: 600; }
+.hero .price{ color:var(--muted); font-size:14px; margin-bottom:18px; font-weight: 600; }
+
+.btn-cta{
+display:inline-block;
+padding:14px 36px;
+border-radius:999px;
+background: linear-gradient(90deg,var(--neon),#5e9bff);
+color:#07040a;
+font-weight:800;
+box-shadow:0 16px 60px rgba(142,94,255,0.18);
+text-decoration:none;
+transition: transform .16s ease, box-shadow .16s ease;
+}
+.btn-cta:hover{ transform:translateY(-4px); box-shadow:0 28px 90px rgba(142,94,255,0.26) }
+
+.why{ max-width:1180px; margin:28px auto; padding:8px 22px; text-align:center }
+.why-grid{ height: 200px; ; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:18px }
+.why-card{
+width:320px; height: 160px; padding:20px; border-radius:12px; justify-content: center; align-items: center; display:flex; text-align:center;
+background: linear-gradient(180deg, rgba(18,16,24,0.5), rgba(16,14,21,0.28));
+box-sizing: border-box;
+border:0.2px solid var(--neon-strong);
+color:var(--muted);
+transition: transform .24s ease, box-shadow .24s;
+}
+.why-card:hover{ transform:translateY(-8px); box-shadow:0 26px 80px rgba(142,94,255,0.06); color:#fff }
+
+.top-section{ max-width:1180px; margin:36px auto; padding:8px 22px }
+.top-head{ display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:12px }
+.top-head h3{ font-size:22px; font-weight:800 }
+.top-head p{ color:var(--muted); font-size:13px }
+
+.slider-wrap{ position:relative; margin-top:8px }
+
+.arrow {
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+z-index:40;
+width:48px; height:48px;
+border-radius:12px;
+background: linear-gradient(180deg, rgba(10,10,14,0.6), rgba(10,10,14,0.4));
+border:1px solid rgba(142,94,255,0.06);
+display:flex; align-items:center; justify-content:center;
+cursor:pointer;
+transition: transform .16s ease, background .16s ease;
+}
+.arrow:hover{ transform:translateY(-50%) scale(1.06); background: rgba(142,94,255,0.10) }
+.arrow.left{ left:8px }
+.arrow.right{ right:8px }
+
+.slider {
+overflow-x:auto;
+overflow-y:hidden;
+padding:18px 8px 26px;
+border-radius:12px;
+background: linear-gradient(180deg, rgba(8,8,10,0.18), rgba(8,8,10,0.08));
+border:1px solid rgba(255,255,255,0.02);
+scroll-behavior:smooth;
+}
+
+.row {
+display:flex;
+gap:var(--card-gap);
+align-items:flex-start;
+padding:6px;
+user-select:none;
+-webkit-overflow-scrolling:touch;
+}
+
+.card {
+min-width:var(--card-w);
+width:var(--card-w);
+border-radius:12px;
+overflow:hidden;
+background: linear-gradient(180deg,#06060a,#0a0a0d);
+cursor:pointer;
+transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+border:1px solid rgba(255,255,255,0.04);
+position:relative;
+}
+.card img{ width:100%; height:260px; object-fit:cover; display:block }
+.card .meta{ padding:10px; font-size:13px; color:var(--muted) }
+.card:hover{ transform:translateY(-10px) scale(1.04); box-shadow:0 28px 100px rgba(142,94,255,0.08) }
+.card.selected { outline: 3px solid rgba(142,94,255,0.18); box-shadow: 0 36px 140px rgba(142,94,255,0.12) }
+
+@media (max-width:960px){
+:root{ --card-w:150px }
+.card img{ height:220px }
+.hero .title{ font-size:40px }
+}
+@media (max-width:640px){
+:root{ --card-w:140px; --card-gap:12px }
+.card img{ height:190px }
+.hero{ padding:36px 18px }
+.hero .title{ font-size:30px }
+}
+
+.modal {
+position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+background: rgba(4,4,6,0.72);
+z-index:120;
+padding:28px;
+}
+.modal.show{ display:flex }
+.player {
+width:min(1100px,96%); max-height:86vh; background:#000; border-radius:12px; overflow:hidden;
+box-shadow:0 40px 140px rgba(0,0,0,0.9); position:relative;
+}
+.player video{ width:100%; height:100%; display:block; background:#000 }
+.player .close {
+position:absolute; right:12px; top:12px; z-index:10; background:rgba(255,255,255,0.04);
+color:#fff; border:none; padding:8px 10px; border-radius:8px; cursor:pointer;
+}
+
+.mini-footer{ max-width:1180px; margin:28px auto; text-align:center; color:var(--muted); font-size:13px }
+</style>
+</head>
+<body>
+
+<header>
+        <div class="logo">Stream X</div>
+    </header>
+
+<section class="hero" aria-label="Hero">
+<div class="title">STREAM X</div>
+<div class="subtitle">Stream your favourite movies, series, and TV — premium quality with smart recommendations.</div>
+<div class="price">Subscribe now for ₦2,500 / month</div>
+<a class="btn-cta" href="Sign Up/signUp.html">Join Stream X</a>
+</section>
+
+<section class="why" aria-labelledby="whyTitle">
+<h2 id="whyTitle">Why Choose Stream X?</h2>
+<div class="why-grid">
+<div class="why-card">Personalized recommendations tailored for your taste.</div>
+<div class="why-card">Affordable plans and student discounts.</div>
+<div class="why-card">Download and watch offline — anywhere, anytime.</div>
+</div>
+</section>
+
+<section class="top-section" aria-labelledby="topTitle">
+<div class="top-head">
+<h3 id="topTitle">Top Picks This Week</h3>
+<p class="top-sub">Tap a movie to select — arrows move one card at a time.</p>
+</div>
+
+<div class="slider-wrap">
+<button class="arrow left" id="arrowLeft" aria-label="Previous">◀️</button>
+<button class="arrow right" id="arrowRight" aria-label="Next">▶️</button>
+
+<div class="slider" id="slider" role="region" aria-label="Top picks slider">
+<div class="row" id="row" tabindex="0" aria-live="polite">
+</div>
+</div>
+</div>
+</section>
+
+<div class="modal" id="modal" role="dialog" aria-hidden="true">
+<div class="player" role="document">
+<button class="close" id="closeBtn" aria-label="Close player">✕</button>
+<video id="player" controls playsinline></video>
+</div>
+</div>
+
+<div class="mini-footer">Contact · Terms & Privacy Notice · Help</div>
+
+<script>
+const movies = [
+{ title:'GONE GIRL', image:'https://image.tmdb.org/t/p/w500/qymaJhucquUwjpb8oiqynMeXnID.jpg', video:'https://www.youtube.com/watch?v=2-_-1nJf8Vg' },
+{ title:'HOW TO TRAIN YOUR DRAGON', image:'https://image.tmdb.org/t/p/w500/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg', video:'https://www.youtube.com/watch?v=QbT1IKqf6rM' },
+{ title:'THE BLADE RUNNER 2049', image:'https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg', video:'https://www.youtube.com/watch?v=gCcx85zbxz4' },
+{ title:'JOHN WICK', image:'https://image.tmdb.org/t/p/w500/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg', video:'https://www.youtube.com/watch?v=k10ETZ41q5o' },
+{ title:'THE DARK KNIGHT', image:'https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg', video:'https://www.youtube.com/watch?v=EXeTwQWrcwY' },
+{ title:'IT', image:'https://image.tmdb.org/t/p/w500/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg', video:'https://www.youtube.com/watch?v=PN8il_zkRQc' },
+{ title:'ENCANTO', image:'https://image.tmdb.org/t/p/w500/4j0PNHkMr5ax3IA8tjtxcmPU3QT.jpg', video:'https://www.youtube.com/watch?v=CaimKeDcudo' },
+{ title:'A QUIET PLACE', image:'https://image.tmdb.org/t/p/w500/nAU74GmpUk7t5iklEp3bufwDq4n.jpg', video:'https://www.youtube.com/watch?v=WR7cc5t7tv8' },
+{ title:'THE NOTEBOOK', image:'https://image.tmdb.org/t/p/w500/qa6HCwP4Z15l3hpsASz3auugEW6.jpg', video:'https://www.youtube.com/watch?v=FC6biTjEyZw' },
+{ title:'Se7en', image:'https://image.tmdb.org/t/p/w500/69Sns8WoET6CfaYlIkHbla4l7nC.jpg', video:'https://www.youtube.com/watch?v=znmZoVkCjpI' }
+];
+
+
+const row = document.getElementById('row');
+const slider = document.getElementById('slider');
+const modal = document.getElementById('modal');
+const player = document.getElementById('player');
+const closeBtn = document.getElementById('closeBtn');
+
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+function build() {
+row.innerHTML = '';
+movies.forEach((m,i)=>{
+const card = document.createElement('div');
+card.className = 'card';
+card.tabIndex = 0;
+card.setAttribute('data-index', i);
+card.setAttribute('data-video', m.video || '');
+card.innerHTML = `
+<img src="${m.image}" alt="${escapeHtml(m.title)}">
+<div class="meta">${escapeHtml(m.title)}</div>
+`;
+card.addEventListener('click', ()=> onCardClick(card, i));
+card.addEventListener('keydown', e => { if(e.key==='Enter') onCardClick(card,i) });
+row.appendChild(card);
+});
+}
+build();
+
+const gap = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-gap')) || 16;
+function cardWidthPx(){
+
+const sample = row.querySelector('.card');
+return sample ? sample.getBoundingClientRect().width : parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 180;
+}
+
+document.getElementById('arrowLeft').addEventListener('click', ()=>{
+const step = cardWidthPx() + gap;
+slider.scrollBy({ left: -(step), behavior: 'smooth' });
+});
+
+document.getElementById('arrowRight').addEventListener('click', ()=>{
+const step = cardWidthPx() + gap;
+slider.scrollBy({ left: step, behavior: 'smooth' });
+});
+
+let isDown=false, startX=0, scrollLeft=0;
+slider.addEventListener('mousedown', e=>{
+isDown=true; slider.classList.add('dragging');
+startX = e.pageX - slider.offsetLeft;
+scrollLeft = slider.scrollLeft;
+slider.style.cursor = 'grabbing';
+});
+window.addEventListener('mouseup', ()=>{
+isDown=false; slider.classList.remove('dragging'); slider.style.cursor='';
+});
+slider.addEventListener('mouseleave', ()=>{ isDown=false; slider.classList.remove('dragging'); slider.style.cursor=''; });
+slider.addEventListener('mousemove', e=>{
+if(!isDown) return;
+e.preventDefault();
+const x = e.pageX - slider.offsetLeft;
+const walk = (x - startX) * 1.2;
+slider.scrollLeft = scrollLeft - walk;
+});
+slider.addEventListener('touchstart', e=> {
+startX = e.touches[0].pageX - slider.offsetLeft;
+scrollLeft = slider.scrollLeft;
+}, {passive:true});
+slider.addEventListener('touchmove', e=>{
+const x = e.touches[0].pageX - slider.offsetLeft;
+const walk = (x - startX) * 1.2;
+slider.scrollLeft = scrollLeft - walk;
+}, {passive:true});
+
+row.addEventListener('keydown', e=>{
+if(e.key === 'ArrowRight') slider.scrollBy({ left: cardWidthPx()+gap, behavior: 'smooth' });
+if(e.key === 'ArrowLeft') slider.scrollBy({ left: -(cardWidthPx()+gap), behavior: 'smooth' });
+});
+
+function onCardClick(card, index){
+row.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+card.classList.add('selected');
+
+centerCard(card);
+
+const video = card.getAttribute('data-video');
+if(video && video.trim()){
+openModal(video);
+}
+}
+
+function centerCard(card){
+const sliderRect = slider.getBoundingClientRect();
+const cardRect = card.getBoundingClientRect();
+const offset = (cardRect.left + cardRect.width/2) - (sliderRect.left + sliderRect.width/2);
+slider.scrollBy({ left: offset, behavior: 'smooth' });
+}
+
+function openModal(src){
+player.pause();
+player.src = src;
+modal.classList.add('show');
+modal.setAttribute('aria-hidden','false');
+player.play().catch(()=>{});
+}
+function closeModal(){
+modal.classList.remove('show');
+modal.setAttribute('aria-hidden','true');
+player.pause();
+player.src = '';
+}
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+let isScrolling;
+slider.addEventListener('scroll', ()=>{
+window.clearTimeout(isScrolling);
+isScrolling = setTimeout(()=> {
+
+snapToNearestCard();
+}, 120);
+});
+
+function snapToNearestCard(){
+const cards = Array.from(row.querySelectorAll('.card'));
+if(!cards.length) return;
+const sliderRect = slider.getBoundingClientRect();
+const center = sliderRect.left + sliderRect.width/2;
+let nearest = cards[0], nearestDist = Infinity;
+cards.forEach(c=>{
+const r = c.getBoundingClientRect();
+const cCenter = r.left + r.width/2;
+const dist = Math.abs(cCenter - center);
+if(dist < nearestDist){ nearestDist = dist; nearest = c; }
+});
+
+centerCard(nearest);
+}
+
+
+row.querySelectorAll('.card')[0]?.focus();
+</script>
+
+</body>
+</html>
