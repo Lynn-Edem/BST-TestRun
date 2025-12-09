@@ -1,19 +1,7 @@
-/* mood.js
-Clean, single-file app logic for:
-- rendering posters
-- mood filtering
-- click-to-play trailer modal (YouTube embed if possible)
-- play/watch buttons for featured movie
-- "More.../Less..." toggle
-- sidebar toggle
-*/
 
 document.addEventListener('DOMContentLoaded', () => {
 
-/***********************
-* 1) DATA (MOVIES) — cleaned
-* Make sure poster URLs and stream URLs have no leading/trailing spaces.
-***********************/
+
 const MOVIES = [
 { id:1, title:"The Conjuring", poster:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo1w35AsAv2sISXApGQxf8hD_gO4d_A_ZC3Q&s", genres:["Horror"], moods:["curious","sad","angry"], stream:"https://www.youtube.com/watch?v=k10ETZ41q5o" },
 { id:2, title:"IT", poster:"https://upload.wikimedia.org/wikipedia/en/5/5a/It_%282017%29_poster.jpg", genres:["Horror"], moods:["curious","angry"], stream:"https://www.youtube.com/watch?v=7pY5g1LYkiY" },
@@ -39,9 +27,7 @@ const MOVIES = [
 { id:22, title:"Mad Max: Fury Road", poster:"https://image.tmdb.org/t/p/w500/hA2ple9q4qnwxp3hKVNhroipsir.jpg", genres:["Action"], moods:["angry","happy","curious"], stream:"https://www.youtube.com/watch?v=hEJnMQG9ev8" },
 ];
 
-/***********************
-* Helpers
-***********************/
+
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 
@@ -57,22 +43,20 @@ const watchBtn = $('#watchBtn');
 let currentResults = MOVIES.slice();
 let currentFeatured = MOVIES[0] || null;
 
-/***********************
-* Utility: convert a YouTube url to embed url
-***********************/
+
 function toYouTubeEmbed(url){
 if(!url) return null;
 try {
 url = url.trim();
-// if it's already an embed URL
+
 if(url.includes('youtube.com/embed')) return url;
-// handle watch?v= links
+
 const u = new URL(url);
 if(u.hostname.includes('youtube.com')){
 const v = u.searchParams.get('v');
 if(v) return `https://www.youtube.com/embed/${v}?autoplay=1`;
 }
-// youtu.be short link
+
 if(u.hostname.includes('youtu.be')){
 const id = u.pathname.slice(1);
 if(id) return `https://www.youtube.com/embed/${id}?autoplay=1`;
@@ -83,37 +67,31 @@ return null;
 return null;
 }
 
-/***********************
-* Render movies into the #posterGrid
-***********************/
+
 function renderMovies(list){
 if(!grid) return;
-grid.innerHTML = ''; // clear
+grid.innerHTML = ''; 
 list.forEach((m, idx) => {
-const card = document.createElement('button'); // button for accessibility and keyboard
+const card = document.createElement('button'); 
 card.className = 'poster' + (idx > 14 ? ' small' : '');
 card.type = 'button';
 card.setAttribute('aria-label', m.title);
 card.dataset.id = m.id;
-// background image style
+
 card.style.backgroundImage = `url(${m.poster})`;
-// optionally set a title attribute
+
 card.title = m.title;
 
-// clickable overlay content (optional)
+
 const label = document.createElement('span');
 label.className = 'poster-label';
 label.textContent = m.title;
-// Hide label visually if undesired; you can style .poster-label in CSS
-// Append label if you want:
-// card.appendChild(label);
 
-// click opens trailer modal
 card.addEventListener('click', () => {
 openTrailerForMovie(m);
 });
 
-// keyboard accessible: Enter opens trailer
+
 card.addEventListener('keydown', (e) => {
 if(e.key === 'Enter' || e.key === ' ') {
 e.preventDefault();
@@ -125,24 +103,21 @@ grid.appendChild(card);
 });
 }
 
-/***********************
-* Modal: open trailer for a movie
-***********************/
 function openTrailerForMovie(movie){
 if(!modal) {
-// fallback: open link in new tab
+
 window.open(movie.stream, '_blank');
 return;
 }
 
-// Build embed URL if it's YouTube
+
 const embed = toYouTubeEmbed(movie.stream);
-// Clear previous content inside the modal's display area (safe approach)
+
 const contentWrap = modal.querySelector('.modal-content') || modal.querySelector('div[style*="flex:1"]') || modal.querySelector('div[style*="display:grid"]');
 
-// If the modal in your HTML doesn't have these, we'll add one
+
 if(!contentWrap) {
-// create a content wrapper inside modal
+
 const container = document.createElement('div');
 container.style.flex = '1';
 container.style.display = 'grid';
@@ -150,9 +125,9 @@ container.style.placeItems = 'center';
 container.style.width = '100%';
 container.style.height = '100%';
 container.className = 'modal-content';
-// remove children and add
+
 modal.innerHTML = '';
-// create close button
+
 const closeBtn = document.createElement('button');
 closeBtn.id = 'closeModal';
 closeBtn.textContent = '✕';
@@ -160,12 +135,12 @@ closeBtn.style = 'background:transparent;border:none;color:#fff;font-size:20px;c
 closeBtn.addEventListener('click', closeModal);
 modal.appendChild(closeBtn);
 modal.appendChild(container);
-// now set contentWrap
+
 container.innerHTML = '';
 if(embed){
 container.innerHTML = `<iframe src="${embed}" width="100%" height="100%" style="border:0;border-radius:8px" allow="autoplay; encrypted-media; fullscreen"></iframe>`;
 } else {
-// fallback
+
 const a = document.createElement('a');
 a.href = movie.stream;
 a.target = '_blank';
@@ -175,7 +150,7 @@ a.style.color = '#fff';
 container.appendChild(a);
 }
 } else {
-// remove any old iframe / nodes
+
 contentWrap.innerHTML = '';
 if(embed){
 const iframe = document.createElement('iframe');
@@ -195,14 +170,14 @@ contentWrap.appendChild(a);
 }
 }
 
-// show modal
+
 modal.style.display = 'flex';
 modal.focus?.();
 }
 
 function closeModal(){
 if(!modal) return;
-// remove iframe src (stop playback)
+
 const iframe = modal.querySelector('iframe');
 if(iframe) {
 iframe.src = '';
@@ -213,15 +188,13 @@ modal.style.display = 'none';
 if(closeModalBtn){
 closeModalBtn.addEventListener('click', closeModal);
 } else if(modal){
-// fallback: clicking outside content closes modal
+
 modal.addEventListener('click', (e) => {
 if(e.target === modal) closeModal();
 });
 }
 
-/***********************
-* Featured play/watch buttons (use currentFeatured)
-***********************/
+
 function wireFeaturedButtons(){
 if(playBtn && currentFeatured){
 playBtn.addEventListener('click', () => {
@@ -230,53 +203,49 @@ openTrailerForMovie(currentFeatured);
 }
 if(watchBtn && currentFeatured){
 watchBtn.addEventListener('click', () => {
-// placeholder: trigger watch action — you can implement real playback
+
 alert('Start playback (stub) for: ' + currentFeatured.title);
 });
 }
 }
 
-/***********************
-* Mood filtering
-***********************/
+
 function applyMood(mood){
 const moodLower = (mood || '').toLowerCase();
-// update body class (for CSS theme)
+
 document.body.className = '';
 if(moodLower) document.body.classList.add(`mood-${moodLower}`);
 
-// filter movies
+
 const results = MOVIES.filter(m => Array.isArray(m.moods) && m.moods.map(x => x.toLowerCase()).includes(moodLower));
 const moviesToShow = results.length ? results : MOVIES.slice();
 currentResults = moviesToShow;
 renderMovies(moviesToShow);
 }
 
-// wire chips
+
 chips.forEach(chip => {
 chip.addEventListener('click', () => {
-// UI highlight
+
 chips.forEach(c => c.classList.remove('active'));
 chip.classList.add('active');
 
-// small visual shadow style
+
 chips.forEach(c => c.style.boxShadow = 'none');
 chip.style.boxShadow = '0 6px 18px rgba(0,0,0,0.6) inset';
 
-// heading
+
 if(basedOnTitle){
 basedOnTitle.textContent = `Based on Your Mood "${chip.textContent}"`;
 }
 
-// apply mood
+
 const mood = (chip.dataset.mood || chip.textContent || '').trim();
 applyMood(mood);
 });
 });
 
-/***********************
-* "More.../Less..." toggle (safe guards)
-***********************/
+
 const moreBtn = $('#moreBtn');
 const moreText = document.querySelector('.more-text');
 
@@ -289,9 +258,6 @@ moreBtn.textContent = expanded ? 'Less...' : 'More...';
 });
 }
 
-/***********************
-* Sidebar toggle (safe guard)
-***********************/
 const sidebar = $('#sidebar');
 const toggleBtn = $('#toggleBtn');
 if(toggleBtn && sidebar){
@@ -300,10 +266,8 @@ sidebar.classList.toggle('open');
 });
 }
 
-/***********************
-* Initialize: render all and wire featured
-***********************/
+
 renderMovies(currentResults);
 wireFeaturedButtons();
 
-}); // DOMContentLoaded end
+}); 
