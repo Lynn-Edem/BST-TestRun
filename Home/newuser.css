@@ -429,3 +429,286 @@ font-size: 15px;
 text-align: center;
 opacity: 0.7;
 }
+
+
+
+@media (max-width:425px) {
+body{
+  overflow-x: hidden;
+  width: 100%;
+}
+
+  #heading{
+    font-size: 25px;
+  }
+
+  #heading2{
+    font-size: 18px;
+  }
+
+  #feel{
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .feeling{
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    gap: 6px;   
+    line-height: 15px;
+    margin-bottom: 10px;
+  }
+
+  #prada{
+
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+
+  .corp1{
+    font-size: 13px;
+  }
+  .corp{
+    line-height: 15px;
+  }
+
+  .row{
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-title{
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .history{
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  #discover1{
+    font-size:15px ;
+    line-height: 15px;
+  }
+
+.movie-img{
+  width: 280px;
+}
+
+  #movie2-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #movie3-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #movie4-section{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-logo{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-bottom{
+    font-size: 13px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+
+
+
+@media (max-width:360px) {
+body{
+  overflow-x: hidden;
+  width: 100%;
+}
+
+  #heading{
+    font-size: 25px;
+  }
+
+  #heading2{
+    font-size: 18px;
+  }
+
+  #feel{
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .feeling{
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    gap: 6px;   
+    line-height: 15px;
+    margin-bottom: 10px;
+  }
+
+  #prada{
+
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+
+  .corp1{
+    font-size: 13px;
+  }
+  .corp{
+    line-height: 15px;
+  }
+
+  .row{
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-title{
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .history{
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  #discover1{
+    font-size:15px ;
+    line-height: 15px;
+  }
+
+  #movie2-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #movie3-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #movie4-section{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-logo{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-bottom{
+    font-size: 13px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+
+@media (max-width:320px) {
+body{
+  overflow-x: hidden;
+  width: 100%;
+}
+
+  #heading{
+    font-size: 25px;
+  }
+
+  #heading2{
+    font-size: 18px;
+  }
+
+  #feel{
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .feeling{
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    gap: 6px;   
+    line-height: 15px;
+    margin-bottom: 10px;
+  }
+
+  #prada{
+
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+
+  .corp1{
+    font-size: 13px;
+  }
+  .corp{
+    line-height: 15px;
+  }
+
+  .row{
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-title{
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .history{
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  #discover1{
+    font-size:15px ;
+    line-height: 15px;
+  }
+
+  #movie2-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #movie3-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #movie4-section{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-logo{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-bottom{
+    font-size: 13px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

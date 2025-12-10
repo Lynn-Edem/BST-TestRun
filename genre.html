@@ -51,7 +51,9 @@
         <button class="boxes" id="card12">Reality Tv</button>
       </div>
 
-      <div><button class="btn-cta">Next</button></div>
+      <div> 
+        <a href="newuser.html"><button class="btn-cta" id="nxt">Next</button>
+        </a> </div>
     </div>
 
     <script>
@@ -62,6 +64,14 @@
           btn.classList.toggle("glow");
         });
       });
+
+
+      
+    document.getElementById("nxt").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+            window.location.href = "../Home/newuser.html";
+        });
+ 
     </script>
   </body>
 </html>

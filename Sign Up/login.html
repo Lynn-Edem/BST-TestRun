@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream X</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="signup.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="login.css">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 </head>
-
 <body>
 
+
+
     <div class="bgimg">   
-            <img src="LogIn Bg.png" alt="">
+            <img src="LogIn Bg.png" alt="background image" >
     </div>
 
     <div class="overlay"></div>
 
-
-    <section>
+    <section class="second">
 
         <div class="header">
             <h1>Welcome Back</h1>
@@ -45,24 +43,29 @@
             <p>Or Continue With Email</p>
             <div class="rightline"></div>
         </div>
-        <form action="post">
-            <input type="text" name="Email" id="mail" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <div class="remme"><input class="check" type="checkbox" id="rememberme" name="rememberme"
+        <form action="../Home/existinguser.html" >
+            <input type="text" name="Email" id="mail" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="remme">
+                <input class="check" type="checkbox" id="rememberme" name="rememberme"
                     value="rememberme">
                 <label for="rememberme"> Remember me</label>
             </div><br>
 
-            <div class="login" id="login"><button>Login</button></div>
+            <a href="../Home/existinguser.html"  id="login" class="login ">
+                <button type="submit">Login</button></a>
         </form>
-        </div>
+   </section>
 
-        <script>
+
+
+
+   <!-- <script>
         document.getElementById("login").addEventListener("click", function(event) {
             event.preventDefault(); // Prevent form submission
             window.location.href = "../Home/existinguser.html";
         });
-        </script>
-</body>
+   </script> -->
 
+</body>
 </html>

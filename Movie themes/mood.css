@@ -14,7 +14,7 @@
     overflow-x: hidden;
     background:radial-gradient(circle at 50% 20%, rgba(75,0,120,0.45) 0%, rgba(20,5,35,0.9) 45%), linear-gradient(180deg,var(--bg2),var(--bg1)); 
     color:#fff;}
-
+ 
 
   .app{display:flex;min-height:100vh;}
 

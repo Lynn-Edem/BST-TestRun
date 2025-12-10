@@ -19,3 +19,19 @@ leftBtn.addEventListener("click", () => {
 document.getElementById("happy").addEventListener("click", function() {
   window.location.href = "../Movie themes/mood.html";
 });
+
+document.getElementById("sad").addEventListener("click", function() {
+  window.location.href = "../Movie themes/mood.html";
+});
+
+document.getElementById("angry").addEventListener("click", function() {
+  window.location.href = "../Movie themes/mood.html";
+});
+
+document.getElementById("curious").addEventListener("click", function() {
+  window.location.href = "../Movie themes/mood.html";
+});
+
+document.getElementById("sexy").addEventListener("click", function() {
+  window.location.href = "../Movie themes/mood.html";
+});

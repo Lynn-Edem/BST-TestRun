@@ -14,14 +14,13 @@
 
 <body>
     
-    </div><div class="bgimg">   
+    <div class="bgimg">   
             <img src="LogIn Bg.png" alt="">
     </div>
 
     <div class="overlay">
 
     </div>
-
 
     <section>
 
@@ -48,18 +47,30 @@
             <p>Or Continue With Email</p>
             <div class="rightline"></div>
         </div>
-        <form action="post">
-            <input type="text" name="Email" id="mail" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <div class="remme"><input class="check" type="checkbox" id="rememberme" name="rememberme"
-                    value="rememberme">
-                <label for="rememberme"> Remember me</label>
-            </div>
 
-            <div class="login"><button>Login</button></div>
+
+        <form action="../genre.html" >
+         <input type="text" name="Email" id="mail" placeholder="Email" required>
+         <input type="password" name="password" placeholder="Password" required>
+         <div class="remme">
+            <input class="check" type="checkbox" id="rememberme" name="rememberme"
+             value="rememberme">
+            <label for="rememberme"> Remember me</label>
+         </div><br>
+
+            <a href="genre.html" class="login" id="login">
+                <button type="submit">Sign Up</button></a>
         </form>
 </section>
         
+
+
+<!-- <script>
+    document.getElementById("login").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+            window.location.href = "../genre.html";
+        });
+</script> -->
 
 </body>
 
